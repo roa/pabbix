@@ -1,0 +1,28 @@
+$VAR1 = {
+          'jsonrpc' => '2.0',
+          'id' => 0,
+          'result' => [
+                        {
+                          'priority' => '4',
+                          'hosts' => [
+                                       {
+                                         'hostid' => '10034'
+                                       }
+                                     ],
+                          'value' => '1',
+                          'status' => '0',
+                          'templateid' => '13567',
+                          'hostid' => '10034',
+                          'comments' => '',
+                          'description' => 'Postgres Postmaster Log Checksum',
+                          'host' => '1.db.adeven.com',
+                          'lastchange' => '1346161038',
+                          'triggerid' => '13570',
+                          'expression' => '{12667}>0',
+                          'error' => '',
+                          'url' => '',
+                          'type' => '0',
+                          'dep_level' => '0'
+                        }
+                      ]
+        };
