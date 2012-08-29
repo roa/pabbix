@@ -8,8 +8,12 @@
 use strict;
 use warnings;
 
-use Test::More tests => 1;
-BEGIN { use_ok('Pabbix') };
+use Test::More tests => 2;
+BEGIN 
+{ 
+    use_ok('Pabbix');
+    use_ok('Array::Diff');
+};
 
 #########################
 

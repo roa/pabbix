@@ -1,6 +1,10 @@
 Changes
 Makefile.PL
 MANIFEST
-README
+README.md
 t/Pabbix.t
 lib/Pabbix.pm
+bin/main.pl
+META.yml
+META.json
+Build.PL
