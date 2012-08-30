@@ -21,12 +21,14 @@ my $url;
 my $file;
 my $ok = 1;
 my @after;
+my @before;
+my $fh;
 
 GetOptions(
-    "user|u=s" => \$user,
+    "user|u=s"   => \$user,
     "passwd|p=s" => \$passwd,
-    "url=s" => \$url,
-    "file|f=s" => \$file
+    "url=s"      => \$url,
+    "file|f=s"   => \$file
 );
 
 $ok = defined( $user );  
@@ -42,10 +44,12 @@ unless( $ok )
 my $authToken = Pabbix::getAuthToken( $url, $user, $passwd );
 my $response =  Pabbix::getTrigger( $url, $authToken );
 
-
-open( my $fh, '<', $file );
-my @before = <$fh>;
-close $fh;
+if( -f $file )
+{
+    open( $fh, '<', $file );
+    @before = <$fh>;
+    close $fh;
+}
 
 foreach( @{$response->{'result'}} )
 {
@@ -63,7 +67,7 @@ foreach( @{$response->{'result'}} )
 }
 
 @before = sort( uniqArray( @before ) );
-@after = sort( uniqArray( @after ) );
+@after  = sort( uniqArray( @after ) );
 my $diff = Array::Diff->diff( \@before, \@after );
 my $add_ref = $diff->added;
 my $del_ref = $diff->deleted;
