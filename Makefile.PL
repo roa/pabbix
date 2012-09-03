@@ -9,6 +9,7 @@ WriteMakefile
                    'Data::Dumper' => 0,
                    'JSON::XS' => 0,
                    'LWP::UserAgent' => 0,
+                   'Moo' => 0,
                    'Test::More' => 0
                  },
   'INSTALLDIRS' => 'site',

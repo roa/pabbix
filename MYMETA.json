@@ -35,6 +35,7 @@
             "Data::Dumper" : "0",
             "JSON::XS" : "0",
             "LWP::UserAgent" : "0",
+            "Moo" : "0",
             "perl" : "0"
          }
       }
@@ -42,7 +43,19 @@
    "provides" : {
       "Pabbix" : {
          "file" : "lib/Pabbix.pm",
-         "version" : "0.01"
+         "version" : "0.02"
+      },
+      "Pabbix::Auth" : {
+         "file" : "lib/Pabbix/Auth.pm",
+         "version" : "0"
+      },
+      "Pabbix::Request" : {
+         "file" : "lib/Pabbix/Request.pm",
+         "version" : "0"
+      },
+      "Pabbix::Trigger" : {
+         "file" : "lib/Pabbix/Trigger.pm",
+         "version" : "0"
       }
    },
    "release_status" : "stable",
@@ -51,5 +64,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }

@@ -32,7 +32,7 @@ my $builder = Module::Build->new(
         'JSON::XS'        => 0,
         'Data::Dumper'    => 0,
         'Array::Diff'     => 0,
-
+        'Moo'             => 0,
     },
     add_to_cleanup     => ['Build _build MYMETA.*'],
     create_makefile_pl => 'traditional',
