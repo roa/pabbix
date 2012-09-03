@@ -45,12 +45,12 @@ my $authToken = Pabbix::Auth->new(
     url => $url,
     user => $user,
     passwd => $passwd,
-)->getAuthToken();
+)->get();
 
 my $response =  Pabbix::Trigger->new(
     authToken => $authToken,
     url => $url,
-)->getTrigger;
+)->get;
 
 
 if( -f $file )

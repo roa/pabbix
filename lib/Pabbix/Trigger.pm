@@ -5,7 +5,7 @@ use warnings;
 use Moo;
 use Pabbix::Request;
 
-sub getTrigger
+sub get
 {
     my $self = shift;
     my $json = {
@@ -26,7 +26,7 @@ sub getTrigger
         url => $self->url,
         json => $json,
     );
-    return $response->makeReq();
+    return $response->get();
 }
 
 sub _translateStatus

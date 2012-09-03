@@ -5,7 +5,7 @@ use warnings;
 use Moo;
 use Pabbix::Request;
 
-sub getAuthToken
+sub get
 {
     my $self = shift;
     my $json = {
