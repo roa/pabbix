@@ -43,8 +43,8 @@ unless( $ok )
 
 my $authToken = Pabbix::Auth->new(
     url => $url,
-    user => 'Admin',
-    passwd => 'CrKyrJegLL'
+    user => $user,
+    passwd => $passwd,
 )->getAuthToken();
 
 my $response =  Pabbix::Trigger->new(
