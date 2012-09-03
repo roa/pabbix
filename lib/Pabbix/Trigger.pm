@@ -15,7 +15,7 @@ sub getTrigger
             output     => "extend",
             expandData => "host",
             filter     => {
-                value => 1
+                value => $self->_translateStatus,
             }
         },
         auth => $self->authToken,
@@ -29,12 +29,33 @@ sub getTrigger
     return $response->makeReq();
 }
 
+sub _translateStatus
+{
+    my $self = shift;
+    if( ! defined( $self->statusValue ) || $self->statusValue eq 'PROBLEM' )
+    {
+        return 1;
+    }
+    elsif( $self->statusValue eq 'OK' )
+    {
+        return 0;
+    }
+    else
+    {
+        die 'unknown status code';
+    }
+}
+
 has url => (
     is => 'ro',
 );
 
 has authToken => (
     is => 'ro',
+);
+
+has statusValue => (
+    is => 'ro'
 );
 
 1;

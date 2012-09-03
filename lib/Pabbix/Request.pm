@@ -11,11 +11,12 @@ sub makeReq
     my $self = shift;
     my $req = HTTP::Request->new( POST => ($self->url) );
     $req->content( encode_json( $self->json ) );
+    $req->content_type( 'application/json-rpc' );
+
     my $ua = LWP::UserAgent->new;
     $ua->timeout(10);
-
-    $req->content_type( 'application/json-rpc' );
     my $response = $ua->request($req);
+
     if( $response->is_success )
     {
         return decode_json( $response->decoded_content );
