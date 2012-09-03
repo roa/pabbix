@@ -40,6 +40,10 @@ sub _translateStatus
     {
         return 0;
     }
+    elsif( $self->statusValue eq 'UNKNOWN' )
+    {
+        return 2;
+    }
     else
     {
         die 'unknown status code';
