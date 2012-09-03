@@ -13,6 +13,9 @@ BEGIN
 { 
     use_ok('Pabbix');
     use_ok('Array::Diff');
+    use_ok('Moo');
+    use_ok('JSON::XS');
+    use_ok('LWP::UserAgent');
 };
 
 #########################

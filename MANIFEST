@@ -4,6 +4,9 @@ MANIFEST
 README.md
 t/Pabbix.t
 lib/Pabbix.pm
+lib/Pabbix/Auth.pm
+lib/Pabbix/Trigger.pm
+lib/Pabbix/Request.pm
 bin/main.pl
 META.yml
 META.json

@@ -9,7 +9,7 @@ use Getopt::Long qw(:config pass_through);
 
 my $install      = 0;
 my $dist         = 0;
-my $v            = '0.01';
+my $v            = '0.02';
 my @script_files = grep { -f and !-d } glob 'bin/main.pl';
 say for @script_files;
 
