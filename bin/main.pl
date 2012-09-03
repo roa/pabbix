@@ -41,8 +41,17 @@ unless( $ok )
     die "blah\n";
 }
 
-my $authToken = Pabbix::getAuthToken( $url, $user, $passwd );
-my $response =  Pabbix::getTrigger( $url, $authToken );
+my $authToken = Pabbix::Auth->new(
+    url => $url,
+    user => 'Admin',
+    passwd => 'CrKyrJegLL'
+)->getAuthToken();
+
+my $response =  Pabbix::Trigger->new(
+    authToken => $authToken,
+    url => $url,
+)->getTrigger;
+
 
 if( -f $file )
 {

@@ -3,10 +3,8 @@ package Pabbix;
 use 5.012004;
 use strict;
 use warnings;
-use LWP::UserAgent;
-use Data::Dumper;
-use JSON::XS;
-
+use Pabbix::Auth;
+use Pabbix::Trigger;
 require Exporter;
 
 our @ISA = qw(Exporter);
@@ -30,63 +28,7 @@ our @EXPORT = qw(
 
 our $VERSION = '0.01';
 
-sub makeReq
-{
-    my ( $url, $json ) = @_;
-    my $req = HTTP::Request->new( POST => $url );
-    $req->content( encode_json( $json ) );
-    my $ua = LWP::UserAgent->new;
-    $ua->timeout(10);
 
-    $req->content_type( 'application/json-rpc' );
-    my $response = $ua->request($req);
-    if( $response->is_success )
-    {
-        return decode_json( $response->decoded_content );
-    }
-    else
-    {
-        die $response->status_line;
-    }
-}
-
-sub getAuthToken
-{
-    my ( $url, $user, $passwd ) = @_;
-    my $json = {
-        jsonrpc => "2.0",
-        method  => "user.authenticate",
-        params  => {
-            user     => $user,
-            password => $passwd
-        },
-        id      => "0"
-    };
-
-    my $response = makeReq( $url, $json );
-    return $response->{"result"};
-}
-
-sub getTrigger
-{
-    my ( $url, $authToken ) = @_;
-    my $json = {
-        jsonrpc => "2.0",
-        method  => "trigger.get",
-        params  => {
-            output     => "extend",
-            expandData => "host",
-            filter     => {
-                value => 1
-            }
-        },
-        auth => $authToken,
-        id   => 0
-    };
-
-    my $response = makeReq( $url, $json );
-    return $response;
-}
 
 1;
 __END__
