@@ -16,3 +16,4 @@ pm_to_blib
 tmp/
 *.tar
 *.tar.gz
+bin/test.pl

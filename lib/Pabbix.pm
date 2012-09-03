@@ -5,6 +5,8 @@ use strict;
 use warnings;
 use Pabbix::Auth;
 use Pabbix::Trigger::Get;
+use Pabbix::Trigger::Exist;
+
 require Exporter;
 
 our @ISA = qw(Exporter);

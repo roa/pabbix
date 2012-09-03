@@ -59,7 +59,7 @@ has authToken => (
 );
 
 has statusValue => (
-    is => 'ro'
+    is => 'ro',
 );
 
 1;
