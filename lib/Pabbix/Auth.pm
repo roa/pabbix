@@ -22,7 +22,7 @@ sub get
         url => $self->url,
         json => $json,
     );
-    return $response->makeReq()->{'result'};
+    return $response->get()->{'result'};
 }
 
 has url => (

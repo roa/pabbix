@@ -6,7 +6,7 @@ use Moo;
 use LWP::UserAgent;
 use JSON::XS;
 
-sub makeReq
+sub get
 {
     my $self = shift;
     my $req = HTTP::Request->new( POST => ($self->url) );

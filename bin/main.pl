@@ -47,7 +47,7 @@ my $authToken = Pabbix::Auth->new(
     passwd => $passwd,
 )->get();
 
-my $response =  Pabbix::Trigger->new(
+my $response =  Pabbix::Trigger::Get->new(
     authToken => $authToken,
     url => $url,
 )->get;

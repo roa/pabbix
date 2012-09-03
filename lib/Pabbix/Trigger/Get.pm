@@ -1,4 +1,4 @@
-package Pabbix::Trigger;
+package Pabbix::Trigger::Get;
 
 use strict;
 use warnings;
