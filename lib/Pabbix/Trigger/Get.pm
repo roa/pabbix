@@ -4,27 +4,14 @@ use strict;
 use warnings;
 use Moo;
 use Pabbix::Request;
+use Pabbix::Trigger::Trigger;
 
 sub get
 {
     my $self = shift;
-    my $json = {
-        jsonrpc => "2.0",
-        method  => "trigger.get",
-        params  => {
-            output     => "extend",
-            expandData => "host",
-            filter     => {
-                value => $self->_translateStatus,
-            }
-        },
-        auth => $self->authToken,
-        id   => 0
-    };
-
     my $response = Pabbix::Request->new(
         url => $self->url,
-        json => $json,
+        json => $self->_createJson,
     );
     return $response->get();
 }
@@ -50,16 +37,35 @@ sub _translateStatus
     }
 }
 
-has url => (
-    is => 'ro',
-);
+sub _createJson
+{
+    my $self = shift;
+    my $json = {
+        jsonrpc => "2.0",
+        method  => "trigger.get",
+        params  => {
+            output     => "extend",
+            expandData => "host",
+            filter     => {
+                value => $self->_translateStatus,
+            }
+        },
+        auth => $self->authToken,
+        id   => 0
+    };
+    return $json;
+}
 
-has authToken => (
-    is => 'ro',
-);
+#has url => (
+#    is => 'ro',
+#    required => 1,
+#);
 
-has statusValue => (
-    is => 'ro',
-);
+#has authToken => (
+#    is => 'ro',
+#    required => 1,
+#);
+
+
 
 1;

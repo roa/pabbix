@@ -5,7 +5,7 @@ use warnings;
 use Moo;
 use Pabbix::Request;
 use Data::Dumper;
-
+#use Pabbix::Trigger::Trigger;
 sub exist
 {
     my $self = shift;
@@ -46,35 +46,5 @@ sub _createJson
 
     return $json;
 }
-
-has url => (
-    is => 'ro',
-);
-
-has authToken => (
-    is => 'ro',
-);
-
-has host => (
-    is => 'ro',
-);
-
-has hostid => (
-    is => 'ro',
-);
-
-has description => (
-    is => 'ro',
-    required => 1,
-);
-
-has expression => (
-    is => 'ro',
-    required => 1,
-);
-
-has nodeids => (
-    is => 'ro',
-);
 
 1;

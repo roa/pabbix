@@ -4,7 +4,7 @@
       "roa"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Module::Build version 0.4, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112621",
    "license" : [
       "perl_5"
    ],
@@ -21,7 +21,7 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Test::More" : "0"
+            "Test::More" : 0
          }
       },
       "configure" : {
@@ -31,12 +31,12 @@
       },
       "runtime" : {
          "requires" : {
-            "Array::Diff" : "0",
-            "Data::Dumper" : "0",
-            "JSON::XS" : "0",
-            "LWP::UserAgent" : "0",
-            "Moo" : "0",
-            "perl" : "0"
+            "Array::Diff" : 0,
+            "Data::Dumper" : 0,
+            "JSON::XS" : 0,
+            "LWP::UserAgent" : 0,
+            "Moo" : 0,
+            "perl" : 0
          }
       }
    },
@@ -47,15 +47,15 @@
       },
       "Pabbix::Auth" : {
          "file" : "lib/Pabbix/Auth.pm",
-         "version" : "0"
+         "version" : 0
       },
       "Pabbix::Request" : {
          "file" : "lib/Pabbix/Request.pm",
-         "version" : "0"
+         "version" : 0
       },
       "Pabbix::Trigger" : {
          "file" : "lib/Pabbix/Trigger.pm",
-         "version" : "0"
+         "version" : 0
       }
    },
    "release_status" : "stable",
