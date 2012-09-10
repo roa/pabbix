@@ -5,7 +5,7 @@ use warnings;
 use Moo;
 use Pabbix::Request;
 
-extends 'Pabbix::Trigger::Types';
+extends 'Pabbix::Trigger::Base';
 
 sub create
 {
@@ -30,7 +30,7 @@ sub _createJson
             id      => 0
         }
     );
-    $self->json( $self->_add_missing_params );
+    $self->_add_missing_params;
     return $self->json;
 }
 

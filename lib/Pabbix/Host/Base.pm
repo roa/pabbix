@@ -1,4 +1,4 @@
-package Pabbix::Host::Types;
+package Pabbix::Host::Base;
 
 use strict;
 use warnings;
@@ -12,7 +12,6 @@ sub _add_missing_params
     $self->_add_port;
     $self->_add_use_ip;
     $self->_add_groups;
-    return $self->json;
 }
 
 sub _add_host

@@ -5,7 +5,7 @@ use warnings;
 use Moo;
 use Pabbix::Request;
 
-extends 'Pabbix::Trigger::Types';
+extends 'Pabbix::Trigger::Base';
 
 sub get
 {
@@ -54,6 +54,7 @@ sub _createJson
         auth => $self->authToken,
         id   => 0
     };
+    $self->_add_missing_params;
     return $json;
 }
 

@@ -6,7 +6,7 @@ use Moo;
 use Pabbix::Request;
 use Data::Dumper;
 
-extends 'Pabbix::Host::Types';
+extends 'Pabbix::Host::Base';
 
 sub create
 {
@@ -31,7 +31,7 @@ sub _createJson
             id      => 0
         }
     );
-    $self->json( $self->_add_missing_params );
+    $self->_add_missing_params;
     print Dumper $self->json;
     return $self->json;
 }

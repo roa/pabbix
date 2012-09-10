@@ -1,4 +1,4 @@
-package Pabbix::Trigger::Types;
+package Pabbix::Trigger::Base;
 
 use strict;
 use warnings;
@@ -13,7 +13,6 @@ sub _add_missing_params
     $self->_add_description;
     $self->_add_expression;
     $self->_add_nodeids;
-    return $self->json;
 }
 
 sub _add_status
