@@ -7,15 +7,40 @@ use Moo;
 sub _add_missing_params
 {
     my $self = shift;
+    $self->_add_host;
+    $self->_add_ip;
+    $self->_add_port;
+    $self->_add_use_ip;
+    $self->_add_groups;
+    return $self->json;
+}
+
+sub _add_host
+{
+    my $self = shift;
     my $json = $self->json;
     if( $self->host )
     {
         $json->{'params'}{'host'} = $self->host;
     }
+    $self->json( $json );
+}
+
+sub _add_ip
+{
+    my $self = shift;
+    my $json = $self->json;
     if( $self->ip )
     {
         $json->{'params'}{'ip'} = $self->ip;
     }
+    $self->json( $json );
+}
+
+sub _add_port
+{
+    my $self = shift;
+    my $json = $self->json;
     if( $self->port )
     {
         $json->{'params'}{'port'} = $self->port;
@@ -24,6 +49,13 @@ sub _add_missing_params
     {
         $json->{'params'}{'port'} = '10050';
     }
+    $self->json( $json );
+}
+
+sub _add_use_ip
+{
+    my $self = shift;
+    my $json = $self->json;
     if( $self->useip )
     {
         $json->{'params'}{'useip'} = 1;
@@ -32,6 +64,13 @@ sub _add_missing_params
     {
         $json->{'params'}{'useip'} = 0;
     }
+    $self->json( $json );
+}
+
+sub _add_groups
+{
+    my $self = shift;
+    my $json = $self->json;
     if( $self->groups )
     {
         $json->{'params'}{'groups'} = $self->groups;
@@ -40,42 +79,17 @@ sub _add_missing_params
     {
         $json->{'params'}{'groups'}[0]{"groupid"} = 1;
     }
-
-    return $json;
+    $self->json( $json );
 }
 
-has json => (
-    is => 'rw',
-);
 
-has url => (
-    is => 'ro',
-    required => 1,
-);
-
-has authToken => (
-    is => 'ro',
-    required => 1,
-);
-
-has host => (
-    is => 'ro',
-);
-
-has ip => (
-    is => 'ro',
-);
-
-has port => (
-    is => 'ro',
-);
-
-has useip => (
-    is => 'ro',
-);
-
-has groups => (
-    is => 'ro',
-);
+has json      => ( is => 'rw' );
+has url       => ( is => 'ro', required => 1 );
+has authToken => ( is => 'ro', required => 1 );
+has host      => ( is => 'ro' );
+has ip        => ( is => 'ro' );
+has port      => ( is => 'ro' );
+has useip     => ( is => 'ro' );
+has groups    => ( is => 'ro' );
 
 1;
