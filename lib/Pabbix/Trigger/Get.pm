@@ -56,16 +56,15 @@ sub _createJson
     return $json;
 }
 
-#has url => (
-#    is => 'ro',
-#    required => 1,
-#);
+has url => (
+    is => 'ro',
+    required => 1,
+);
 
-#has authToken => (
-#    is => 'ro',
-#    required => 1,
-#);
-
+has authToken => (
+    is => 'ro',
+    required => 1,
+);
 
 
 1;
