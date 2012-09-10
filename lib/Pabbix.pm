@@ -4,9 +4,7 @@ use 5.012004;
 use strict;
 use warnings;
 use Pabbix::Auth;
-use Pabbix::Trigger::Get;
-use Pabbix::Trigger::Exist;
-
+use Pabbix::Trigger;
 require Exporter;
 
 our @ISA = qw(Exporter);

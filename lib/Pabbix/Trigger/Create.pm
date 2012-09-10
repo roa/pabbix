@@ -1,21 +1,21 @@
-package Pabbix::Trigger::Exist;
+package Pabbix::Trigger::Create;
 
 use strict;
 use warnings;
 use Moo;
 use Pabbix::Request;
-use Data::Dumper;
+
 extends 'Pabbix::Trigger::Types';
 
-sub exist
+sub create
 {
     my $self = shift;
 
     my $response = Pabbix::Request->new(
-        url => $self->url,
-        json => $self->_createJson,
+        url  => $self->url,
+        json =>$self->_createJson,
     );
-    return $response->get;
+    return $response->get();
 }
 
 sub _createJson
@@ -25,7 +25,7 @@ sub _createJson
     $self->json(
         {
             jsonrpc => "2.0",
-            method  => "trigger.exists",
+            method  => "trigger.create",
             auth    => $self->authToken,
             id      => 0
         }

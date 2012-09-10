@@ -1,16 +1,15 @@
-package Pabbix::Trigger::Exist;
+package Pabbix::Trigger::Delete;
 
 use strict;
 use warnings;
 use Moo;
 use Pabbix::Request;
-use Data::Dumper;
+
 extends 'Pabbix::Trigger::Types';
 
-sub exist
+sub delete
 {
     my $self = shift;
-
     my $response = Pabbix::Request->new(
         url => $self->url,
         json => $self->_createJson,
@@ -25,13 +24,17 @@ sub _createJson
     $self->json(
         {
             jsonrpc => "2.0",
-            method  => "trigger.exists",
+            method  => "trigger.delete",
+            params  => $self->triggerids,
             auth    => $self->authToken,
             id      => 0
         }
     );
-    $self->json( $self->_add_missing_params );
     return $self->json;
 }
+
+has triggerids => (
+    is => 'ro',
+);
 
 1;

@@ -4,7 +4,8 @@ use strict;
 use warnings;
 use Moo;
 use Pabbix::Request;
-use Pabbix::Trigger::Trigger;
+
+extends 'Pabbix::Trigger::Types';
 
 sub get
 {
@@ -55,16 +56,5 @@ sub _createJson
     };
     return $json;
 }
-
-has url => (
-    is => 'ro',
-    required => 1,
-);
-
-has authToken => (
-    is => 'ro',
-    required => 1,
-);
-
 
 1;
