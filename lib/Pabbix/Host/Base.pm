@@ -7,11 +7,18 @@ use Moo;
 sub _add_missing_params
 {
     my $self = shift;
-    $self->_add_host;
-    $self->_add_ip;
-    $self->_add_port;
-    $self->_add_use_ip;
-    $self->_add_groups;
+    if( $self->filter )
+    {
+        $self->_add_filter;
+    }
+    else
+    {
+        $self->_add_host;
+        $self->_add_ip;
+        $self->_add_port;
+        $self->_add_use_ip;
+        $self->_add_groups;
+    }
 }
 
 sub _add_host
@@ -81,6 +88,17 @@ sub _add_groups
     $self->json( $json );
 }
 
+sub _add_filter
+{
+    my $self = shift;
+    my $json = $self->json;
+    if( $self->hostid )
+    {
+        $json->{'params'}{'output'} = 'extend';
+        $json->{'params'}{'hostids'}[0] = $self->hostid;
+    }
+    $self->json( $json );
+}
 
 has json      => ( is => 'rw' );
 has url       => ( is => 'ro', required => 1 );
@@ -90,5 +108,7 @@ has ip        => ( is => 'ro' );
 has port      => ( is => 'ro' );
 has useip     => ( is => 'ro' );
 has groups    => ( is => 'ro' );
+has hostid    => ( is => 'ro' );
+has filter    => ( is => 'rw' );
 
 1;

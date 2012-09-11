@@ -19,3 +19,5 @@ tmp/
 bin/trigger
 bin/host
 bin/hostgroup
+bin/item
+bin/template

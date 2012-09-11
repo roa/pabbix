@@ -7,6 +7,8 @@ use Pabbix::Auth;
 use Pabbix::Trigger;
 use Pabbix::Host;
 use Pabbix::HostGroup;
+use Pabbix::Item;
+use Pabbix::Template;
 require Exporter;
 
 our @ISA = qw(Exporter);
