@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use Moo;
 
+extends 'Pabbix::Base';
+
 sub _add_missing_params
 {
     my $self = shift;
@@ -22,7 +24,6 @@ sub _add_search_pattern
     $self->json( $json );
 }
 
-has json => ( is => 'rw' );
 has url => ( is => 'ro', required => 1 );
 has authToken => ( is => 'ro', required => 1 );
 has search => ( is => 'ro' );

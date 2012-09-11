@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use Moo;
 
+extends 'Pabbix::Base';
+
 sub _add_missing_params
 {
     my $self = shift;
@@ -13,15 +15,17 @@ sub _add_missing_params
     $self->_add_description;
     $self->_add_expression;
     $self->_add_nodeids;
+    $self->_add_triggerids;
+    $self->_add_trigger;
 }
 
 sub _add_status
 {
     my $self = shift;
     my $json = $self->json;
-    if( $self->statusValue )
+    if( defined( $self->statusValue ) )
     {
-        $json->{'params'}{'status'} = $self->statusValue;
+        $json->{'params'}{'status'} = $self->_translateStatus;
     }
     $self->json( $json );
 }
@@ -81,16 +85,68 @@ sub _add_nodeids
     $self->json( $json );
 }
 
-has json        => ( is => 'rw' );
+sub _add_triggerids
+{
+    my $self = shift;
+    my $json = $self->json;
+    if( $self->triggerids )
+    {
+        $json->{'params'} = $self->triggerids;
+    }
+    $self->json( $json );
+}
+
+sub _add_trigger
+{
+    my $self = shift;
+    my $json = $self->json;
+    if( $self->trigger )
+    {
+        $json->{'params'} = $self->trigger;
+    }
+    $self->json( $json );
+}
+
+sub _translateStatus
+{
+    my $self = shift;
+    if(
+        ! defined( $self->statusValue ) 
+        || $self->statusValue eq 'PROBLEM' 
+        || $self->statusValue == 1 
+    )
+    {
+        return 1;
+    }
+    elsif( 
+        $self->statusValue eq 'OK'
+        || $self->statusValue == 0
+    )
+    {
+        return 0;
+    }
+    elsif( 
+        $self->statusValue eq 'UNKNOWN' 
+        || $self->statusValue == 2
+    )
+    {
+        return 2;
+    }
+    else
+    {
+        die 'unknown status code';
+    }
+}
+
 has url         => ( is => 'ro', required => 1 );
 has authToken   => ( is => 'ro', required => 1 );
 has statusValue => ( is => 'ro' );
+has status      => ( is => 'ro' );
 has host        => ( is => 'ro' );
 has hostid      => ( is => 'ro' );
 has description => ( is => 'ro' );
 has expression  => ( is => 'ro' );
 has nodeids     => ( is => 'ro' );
-has _get        => ( is => 'rw' );
-has _create     => ( is => 'rw' );
-
+has triggerids  => ( is => 'ro' );
+has trigger     => ( is => 'rw' );
 1;

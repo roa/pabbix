@@ -4,6 +4,8 @@ use strict;
 use warnings;
 use Moo;
 
+extends 'Pabbix::Base';
+
 sub _add_missing_params
 {
     my $self = shift;
@@ -65,7 +67,6 @@ sub _add_output
     $self->json( $json );
 }
 
-has json         => ( is => 'rw' );
 has url          => ( is => 'ro', required => 1 );
 has authToken    => ( is => 'ro', required => 1 );
 has name         => ( is => 'ro' );

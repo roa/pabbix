@@ -10,28 +10,12 @@ extends 'Pabbix::Trigger::Base';
 sub create
 {
     my $self = shift;
-
+    $self->method( 'trigger.create' );
     my $response = Pabbix::Request->new(
         url  => $self->url,
         json =>$self->_createJson,
     );
     return $response->get();
-}
-
-sub _createJson
-{
-    my $self = shift;
-
-    $self->json(
-        {
-            jsonrpc => "2.0",
-            method  => "trigger.create",
-            auth    => $self->authToken,
-            id      => 0
-        }
-    );
-    $self->_add_missing_params;
-    return $self->json;
 }
 
 1;
