@@ -18,3 +18,4 @@ tmp/
 *.tar.gz
 bin/trigger
 bin/host
+bin/hostgroup

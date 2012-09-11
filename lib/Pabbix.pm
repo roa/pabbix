@@ -6,6 +6,7 @@ use warnings;
 use Pabbix::Auth;
 use Pabbix::Trigger;
 use Pabbix::Host;
+use Pabbix::HostGroup;
 require Exporter;
 
 our @ISA = qw(Exporter);
