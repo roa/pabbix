@@ -18,6 +18,7 @@ sub _add_missing_params
         $self->_add_port;
         $self->_add_use_ip;
         $self->_add_groups;
+        $self->_add_templates;
     }
 }
 
@@ -88,6 +89,17 @@ sub _add_groups
     $self->json( $json );
 }
 
+sub _add_templates
+{
+    my $self = shift;
+    my $json = $self->json;
+    if( $self->templates )
+    {
+        $json->{'params'}{'templates'} = $self->templates;
+    }
+    $self->json( $json );
+}
+
 sub _add_filter
 {
     my $self = shift;
@@ -109,6 +121,7 @@ has port      => ( is => 'ro' );
 has useip     => ( is => 'ro' );
 has groups    => ( is => 'ro' );
 has hostid    => ( is => 'ro' );
+has templates => ( is => 'ro' );
 has filter    => ( is => 'rw' );
 
 1;
