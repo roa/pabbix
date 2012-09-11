@@ -8,6 +8,7 @@ sub _add_missing_params
 {
     my $self = shift;
     $self->_add_get_params;
+    $self->_add_create_params;
 }
 
 sub _add_get_params
@@ -25,6 +26,11 @@ sub _add_get_params
     {
         $self->_add_output;
     }
+}
+
+sub _add_create_params
+{
+    my $self = shift;
 }
 
 sub _add_name_filter
@@ -66,5 +72,5 @@ has name         => ( is => 'ro' );
 has groupid      => ( is => 'ro' );
 has _get_by_name => ( is => 'rw' );
 has _get_by_id   => ( is => 'rw' );
-
+has _create      => ( is => 'rw' );
 1;

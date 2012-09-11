@@ -90,5 +90,7 @@ has hostid      => ( is => 'ro' );
 has description => ( is => 'ro' );
 has expression  => ( is => 'ro' );
 has nodeids     => ( is => 'ro' );
+has _get        => ( is => 'rw' );
+has _create     => ( is => 'rw' );
 
 1;
