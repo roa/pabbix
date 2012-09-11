@@ -12,7 +12,6 @@ sub get_by_name
 {
     my $self = shift;
     $self->_get_by_name( 1 );
-   
     my $response = Pabbix::Request->new(
         url => $self->url,
         json => $self->_createJson,
@@ -24,8 +23,7 @@ sub get_by_name
 sub get_by_id
 {
     my $self = shift;
-    $self->_get_by_name( 0 );
-
+    $self->_get_by_id( 1 );
     my $response = Pabbix::Request->new(
         url => $self->url,
         json => $self->_createJson,
@@ -33,6 +31,15 @@ sub get_by_id
     return $response->get;
 }
 
+sub get_all
+{
+    my $self = shift;
+    my $response = Pabbix::Request->new(
+        url => $self->url,
+        json => $self->_createJson,
+    );
+    return $response->get;
+}
 sub _createJson
 {
     my $self = shift;
