@@ -9,27 +9,18 @@ extends 'Pabbix::Base';
 sub _add_missing_params
 {
     my $self = shift;
-    $self->_add_get_params;
-    $self->_add_create_params;
-}
-
-sub _add_get_params
-{
-    my $self = shift;
-    if( $self->_get_by_name )
+    if( $self->method eq ' template.get' )
     {
-        $self->_add_search_pattern;
+        if( $self->_get_by_name )
+        {
+            $self->_add_search_pattern;
+        }
+        elsif( $self->_get_all )
+        {
+            $self->_add_get_all;
+        }
     }
-    if( $self->_get_all )
-    {
-        $self->_add_get_all;
-    }
-}
-
-sub _add_create_params
-{
-    my $self = shift;
-    if( $self->_create )
+    elsif( $self->method eq 'template.create' )
     {
         $self->_add_host;
         $self->_add_groupid;
@@ -102,5 +93,5 @@ has groups       => ( is => 'ro' );
 has templates    => ( is => 'ro' );
 has _get_by_name => ( is => 'rw' );
 has _get_all     => ( is => 'rw' );
-has _create      => ( is => 'rw' );
+
 1;

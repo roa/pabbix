@@ -9,54 +9,48 @@ extends 'Pabbix::Base';
 sub _add_missing_params
 {
     my $self = shift;
-    $self->_add_get_params;
-    $self->_add_create_params;
-}
-
-sub _add_get_params
-{
-    my $self = shift;
-    if( $self->_get_by_name )
+    if( $self->method eq 'hostgroup.get' )
     {
-        $self->_add_name_filter;
+        if( $self->_get_by_name )
+        {
+            $self->_add_name_filter;
+        }
+        elsif( $self->_get_by_id )
+        {
+            $self->_add_id_filter;
+        }
+        else
+        {
+            $self->_add_output;
+        }
     }
-    elsif( $self->_get_by_id )
+    elsif( $self->method eq 'hostgroup.create' )
     {
-        $self->_add_id_filter;
     }
-    else
-    {
-        $self->_add_output;
-    }
-}
-
-sub _add_create_params
-{
-    my $self = shift;
 }
 
 sub _add_name_filter
 {
     my $self = shift;
-    my $json = $self->json;
     $json->{'params'}{'output'} = 'extend';
     if( $self->name )
     {
+        my $json = $self->json;
         $json->{'params'}{'filter'}{'name'} = $self->name;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_id_filter
 {
     my $self = shift;
-    my $json = $self->json;
     $json->{'params'}{'output'} = 'extend';
     if( $self->groupid )
     {
+        my $json = $self->json;
         $json->{'params'}{'filter'}{'groupid'} = $self->groupid;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_output

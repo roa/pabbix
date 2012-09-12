@@ -22,112 +22,112 @@ sub _add_missing_params
 sub _add_status
 {
     my $self = shift;
-    my $json = $self->json;
     if( defined( $self->statusValue ) )
     {
+        my $json = $self->json;
         $json->{'params'}{'status'} = $self->_translateStatus;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_hostid
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->hostid )
     {
+        my $json = $self->json;
         $json->{'params'}{'hostid'} = $self->hostid;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_host
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->host )
     {
+        my $json = $self->json;
         $json->{'params'}{'host'} = $self->host;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_description
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->description )
     {
+        my $json = $self->json;
         $json->{'params'}{'description'} = $self->description;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_expression
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->expression )
     {
+        my $json = $self->json;
         $json->{'params'}{'expression'} = $self->expression;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_nodeids
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->nodeids )
     {
+        my $json = $self->json;
         $json->{'params'}{'nodeids'} = $self->nodeids;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_triggerids
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->triggerids )
     {
+        my $json = $self->json;
         $json->{'params'} = $self->triggerids;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_trigger
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->trigger )
     {
+        my $json = $self->json;
         $json->{'params'} = $self->trigger;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _translateStatus
 {
     my $self = shift;
     if(
-        ! defined( $self->statusValue ) 
-        || $self->statusValue eq 'PROBLEM' 
-        || $self->statusValue == 1 
+        ! defined( $self->statusValue ) ||
+        $self->statusValue eq 'PROBLEM' ||
+        $self->statusValue == 1 
     )
     {
         return 1;
     }
     elsif( 
-        $self->statusValue eq 'OK'
-        || $self->statusValue == 0
+        $self->statusValue eq 'OK' ||
+        $self->statusValue == 0
     )
     {
         return 0;
     }
     elsif( 
-        $self->statusValue eq 'UNKNOWN' 
-        || $self->statusValue == 2
+        $self->statusValue eq 'UNKNOWN' ||
+        $self->statusValue == 2
     )
     {
         return 2;
@@ -149,4 +149,5 @@ has expression  => ( is => 'ro' );
 has nodeids     => ( is => 'ro' );
 has triggerids  => ( is => 'ro' );
 has trigger     => ( is => 'rw' );
+
 1;

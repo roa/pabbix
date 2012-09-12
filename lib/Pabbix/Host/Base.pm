@@ -9,11 +9,11 @@ extends 'Pabbix::Base';
 sub _add_missing_params
 {
     my $self = shift;
-    if( $self->filter )
+    if( $self->method eq 'host.get' )
     {
         $self->_add_filter;
     }
-    else
+    elsif( $self->method eq 'host.create' )
     {
         $self->_add_host;
         $self->_add_ip;
@@ -27,23 +27,23 @@ sub _add_missing_params
 sub _add_host
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->host )
     {
+        my $json = $self->json;
         $json->{'params'}{'host'} = $self->host;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_ip
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->ip )
     {
+        my $json = $self->json;
         $json->{'params'}{'ip'} = $self->ip;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_port
@@ -94,24 +94,24 @@ sub _add_groups
 sub _add_templates
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->templates )
     {
+        my $json = $self->json;
         $json->{'params'}{'templates'} = $self->templates;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 sub _add_filter
 {
     my $self = shift;
-    my $json = $self->json;
     if( $self->hostid )
     {
+        my $json = $self->json;
         $json->{'params'}{'output'} = 'extend';
         $json->{'params'}{'hostids'}[0] = $self->hostid;
+        $self->json( $json );
     }
-    $self->json( $json );
 }
 
 has url       => ( is => 'ro', required => 1 );
