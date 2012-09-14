@@ -15,6 +15,8 @@ sub get
         url => $self->url,
         json => $self->_createJson,
     );
+    use Data::Dumper;
+    print Dumper $self->json;
     return $response->get();
 }
 

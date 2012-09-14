@@ -25,7 +25,9 @@ sub _add_status
     if( defined( $self->statusValue ) )
     {
         my $json = $self->json;
-        $json->{'params'}{'status'} = $self->_translateStatus;
+        $json->{'params'}{'output'} = 'extend';
+        $json->{'params'}{'expandData'} = 'host';
+        $json->{'params'}{'filter'}{'value'} = $self->_translateStatus;
         $self->json( $json );
     }
 }

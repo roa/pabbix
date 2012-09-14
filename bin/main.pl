@@ -50,8 +50,11 @@ my $authToken = Pabbix::Auth->new(
 my $response =  Pabbix::Trigger::Get->new(
     authToken => $authToken,
     url => $url,
+    statusValue => 'PROBLEM',
 )->get;
 
+use Data::Dumper;
+print Dumper $response;
 
 if( -f $file )
 {
