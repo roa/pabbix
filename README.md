@@ -25,7 +25,6 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  blah blah blah
 
 COPYRIGHT AND LICENCE
 
