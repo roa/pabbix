@@ -25,7 +25,6 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-asd asd
 COPYRIGHT AND LICENCE
 
 Put the correct copyright and licence information here.
